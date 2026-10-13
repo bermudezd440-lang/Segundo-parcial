@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Segundo_parcial
 {
     public partial class Form1 : Form
     {
+        string cadenaConexion =
+        @"Server=localhost;Database=Productos;Integrated Security=True;TrustServerCertificate=True;";
+        public Form1()
+        {
+            InitializeComponent();
+            ProbarConexion();
+        }
+
+        private void ProbarConexion()
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+                    MessageBox.Show("Conexión exitosa a la base de datos.");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error en conexión.");
+            }
         public Form1()
         {
             InitializeComponent();
@@ -32,4 +55,6 @@ namespace Segundo_parcial
 
         }
     }
+    //Integrantes de grupo Cristopher godoy y Jonathan Mauricio Hernández Navidad
 }
+
